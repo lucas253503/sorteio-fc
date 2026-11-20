@@ -1,0 +1,1075 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #101813;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   TELA DE ENTRADA (ESTÁDIO / GRAMADO)
+   ========================================== */
+.tela-entrada {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background:
+        radial-gradient(circle at 50% 20%, rgba(54, 199, 107, 0.22), transparent 55%),
+        repeating-linear-gradient(
+            90deg,
+            #0e1b13 0px,
+            #0e1b13 60px,
+            #122318 60px,
+            #122318 120px
+        );
+    overflow: hidden;
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.tela-entrada.saindo {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+}
+
+/* Marcações do gramado no fundo */
+.campo-linhas {
+    position: absolute;
+    inset: 24px;
+    border: 2px solid rgba(54, 199, 107, 0.16);
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+.linha-meio {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: rgba(54, 199, 107, 0.16);
+    transform: translateX(-50%);
+}
+
+.circulo-central {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 220px;
+    height: 220px;
+    border: 2px solid rgba(54, 199, 107, 0.16);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ponto-central {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: rgba(54, 199, 107, 0.35);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.grande-area {
+    position: absolute;
+    top: 50%;
+    width: 110px;
+    height: 260px;
+    border: 2px solid rgba(54, 199, 107, 0.14);
+    transform: translateY(-50%);
+}
+
+.area-esquerda {
+    left: -2px;
+    border-radius: 0 12px 12px 0;
+}
+
+.area-direita {
+    right: -2px;
+    border-radius: 12px 0 0 12px;
+}
+
+/* Holofotes do estádio */
+.holofote {
+    position: absolute;
+    top: -120px;
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(141, 240, 173, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.holofote-esq {
+    left: -80px;
+}
+
+.holofote-dir {
+    right: -80px;
+}
+
+/* Cartão central da entrada */
+.conteudo-entrada {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+    width: 100%;
+    background: rgba(16, 24, 19, 0.86);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(54, 199, 107, 0.45);
+    border-radius: 22px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+    animation: surgirEntrada 0.7s ease-out;
+}
+
+@keyframes surgirEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.selo-temporada {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(54, 199, 107, 0.12);
+    border: 1px solid rgba(54, 199, 107, 0.35);
+    color: #8df0ad;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 22px;
+}
+
+.ponto-aovivo {
+    width: 8px;
+    height: 8px;
+    background: #36c76b;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #36c76b;
+    animation: pulsarPonto 1.6s infinite;
+}
+
+@keyframes pulsarPonto {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+.escudo-entrada {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 18px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, #1b2920, #101813);
+    border: 2px solid #36c76b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(54, 199, 107, 0.22);
+}
+
+.bola-girando {
+    font-size: 42px;
+    display: inline-block;
+    animation: flutuarBola 3s ease-in-out infinite;
+}
+
+@keyframes flutuarBola {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(15deg); }
+}
+
+.titulo-entrada {
+    font-size: 42px;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.titulo-entrada strong {
+    color: #36c76b;
+}
+
+.subtitulo-entrada {
+    color: #b8c9bd;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 440px;
+    margin: 0 auto 26px;
+}
+
+.placar-previa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    background: #101813;
+    border: 1px solid #344b3a;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+}
+
+.item-placar {
+    flex: 1;
+}
+
+.item-placar span {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #36c76b;
+}
+
+.item-placar small {
+    color: #a9b9ad;
+    font-size: 12px;
+}
+
+.divisor-placar {
+    font-size: 12px;
+    font-weight: bold;
+    color: #8df0ad;
+    background: #1b2920;
+    border: 1px solid #344b3a;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.btn-entrar-sistema {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #36c76b, #28a755);
+    color: #0b1910;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 18px 26px;
+    border-radius: 12px;
+    box-shadow: 0 10px 28px rgba(54, 199, 107, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-entrar-sistema:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(54, 199, 107, 0.5);
+}
+
+.btn-entrar-sistema .icone-seta {
+    transition: transform 0.2s ease;
+}
+
+.btn-entrar-sistema:hover .icone-seta {
+    transform: translateX(5px);
+}
+
+.dica-entrada {
+    margin-top: 14px;
+    font-size: 12px;
+    color: #91a296;
+}
+
+/* Animação ao abrir o sistema principal */
+.sistema-principal {
+    animation: entrarSistema 0.5s ease-out;
+}
+
+@keyframes entrarSistema {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   SISTEMA PRINCIPAL (SEU CÓDIGO ORIGINAL)
+   ========================================== */
+.cabecalho {
+    background: #17271d;
+    padding: 25px;
+    text-align: center;
+    border-bottom: 2px solid #36c76b;
+}
+
+.topo-cabecalho {
+    max-width: 1000px;
+    margin: 0 auto 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-voltar-capa {
+    background: #101813;
+    color: #b8c9bd;
+    border: 1px solid #344b3a;
+    padding: 7px 12px;
+    font-size: 12px;
+    border-radius: 7px;
+}
+
+.btn-voltar-capa:hover {
+    border-color: #36c76b;
+    color: #ffffff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo span {
+    font-size: 35px;
+}
+
+.logo h1 {
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.logo strong {
+    color: #36c76b;
+}
+
+.cabecalho > p {
+    margin-top: 8px;
+    color: #b8c9bd;
+}
+
+.perfil-usuario {
+    max-width: 520px;
+    margin: 20px auto 0;
+    padding: 14px 18px;
+    background: #101813;
+    border: 1px solid #344b3a;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+}
+
+#fotoPerfilUsuario {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #36c76b;
+    flex-shrink: 0;
+}
+
+.avatar-padrao {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: #1b2920;
+    border: 1px dashed #526b58;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+.info-usuario {
+    flex: 1;
+    min-width: 0;
+}
+
+.info-usuario strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+.info-usuario small {
+    display: block;
+    color: #a9b9ad;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.acoes-perfil {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.btn-foto-usuario {
+    display: inline-block;
+    background: #36c76b;
+    color: #102016;
+    border-radius: 7px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-foto-usuario:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+}
+
+.btn-remover-foto {
+    background: #35453a;
+    color: #ffffff;
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 35px auto;
+}
+
+.apresentacao {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.apresentacao h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.apresentacao p {
+    color: #b8c9bd;
+    line-height: 1.5;
+}
+
+.painel {
+    background: #1b2920;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #344b3a;
+    margin-bottom: 25px;
+}
+
+.titulo-painel {
+    margin-bottom: 25px;
+}
+
+.titulo-painel h2 {
+    margin-bottom: 8px;
+}
+
+.titulo-painel p {
+    color: #a9b9ad;
+}
+
+.campo {
+    margin-bottom: 22px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input:not([type="checkbox"]):not([type="file"]):not([type="range"]),
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border-radius: 7px;
+    border: 1px solid #526b58;
+    background: #101813;
+    color: white;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #36c76b;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    background: #101813;
+    border: 1px solid #526b58;
+    border-radius: 7px;
+    color: white;
+}
+
+textarea {
+    resize: vertical;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.preview-container {
+    margin-top: 15px;
+}
+
+.preview-container img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #36c76b;
+}
+
+.foto-padrao {
+    width: 130px;
+    height: 130px;
+    background: #101813;
+    border: 1px dashed #526b58;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #a9b9ad;
+    gap: 8px;
+}
+
+.foto-padrao span {
+    font-size: 35px;
+}
+
+.foto-padrao p {
+    font-size: 12px;
+}
+
+.campo small {
+    display: block;
+    margin-top: 8px;
+    color: #a9b9ad;
+    line-height: 1.5;
+}
+
+.caracteristicas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.opcao {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    background: #101813;
+    border: 1px solid #344b3a;
+    border-radius: 7px;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: normal !important;
+    margin: 0 !important;
+}
+
+.opcao input {
+    accent-color: #36c76b;
+    width: 17px;
+    height: 17px;
+}
+
+.botoes-formulario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+button {
+    border: none;
+    border-radius: 7px;
+    padding: 12px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+#btnSalvar {
+    background: #36c76b;
+    color: #102016;
+}
+
+#btnCancelarEdicao {
+    background: #526b58;
+    color: white;
+}
+
+.sorteio-painel h2 {
+    margin-bottom: 20px;
+}
+
+.estatisticas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.estatistica {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+    background: #101813;
+    padding: 18px;
+    border-radius: 8px;
+}
+
+.estatistica span {
+    font-size: 28px;
+    font-weight: bold;
+    color: #36c76b;
+}
+
+.estatistica p {
+    color: #b8c9bd;
+    margin-top: 5px;
+}
+
+.acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-sortear {
+    background: #36c76b;
+    color: #102016;
+    font-size: 16px;
+    padding: 16px;
+}
+
+.btn-limpar {
+    background: #35453a;
+    color: white;
+}
+
+.lista-section,
+.resultado-section {
+    margin-top: 35px;
+}
+
+.cabecalho-secao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.cabecalho-secao span {
+    color: #36c76b;
+    font-size: 14px;
+}
+
+.lista-jogadores {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.cartao-jogador {
+    background: #1b2920;
+    border: 1px solid #344b3a;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.jogador-cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.foto-jogador {
+    width: 75px;
+    height: 75px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: #101813;
+    border: 1px solid #36c76b;
+}
+
+.foto-sem-imagem {
+    width: 75px;
+    height: 75px;
+    border-radius: 10px;
+    background: #101813;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.info-jogador {
+    flex: 1;
+    min-width: 0;
+}
+
+.info-jogador h3 {
+    margin-bottom: 7px;
+    overflow-wrap: anywhere;
+}
+
+.posicao {
+    display: inline-block;
+    background: #244d32;
+    color: #8df0ad;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.posicao-secundaria {
+    display: block;
+    color: #a9b9ad;
+    margin-top: 6px;
+    font-size: 12px;
+}
+
+.descricao-jogador {
+    color: #b8c9bd;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 15px 0;
+    overflow-wrap: anywhere;
+}
+
+.etiquetas-caracteristicas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.etiqueta {
+    background: #26392c;
+    color: #b8e9c6;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+
+.acoes-jogador {
+    display: flex;
+    gap: 8px;
+}
+
+.acoes-jogador button {
+    flex: 1;
+    padding: 9px;
+    font-size: 12px;
+}
+
+.btn-editar {
+    background: #315b8a;
+    color: white;
+}
+
+.btn-excluir {
+    background: #a93636;
+    color: white;
+}
+
+.resultado {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.time {
+    background: #1b2920;
+    border: 1px solid #36c76b;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.time h3 {
+    color: #36c76b;
+    margin-bottom: 6px;
+    font-size: 20px;
+}
+
+.resumo-time {
+    display: block;
+    color: #a9b9ad;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.jogador-time {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #344b3a;
+}
+
+.jogador-time:last-child {
+    border-bottom: none;
+}
+
+.foto-time {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #101813;
+}
+
+.foto-time-padrao {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #101813;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dados-time {
+    flex: 1;
+}
+
+.dados-time strong {
+    display: block;
+    font-size: 14px;
+}
+
+.dados-time small {
+    color: #a9b9ad;
+}
+
+.mensagem-vazia {
+    color: #a9b9ad;
+    padding: 15px 0;
+    line-height: 1.5;
+}
+
+/* Modal de corte e ajuste de foto */
+.modal-recorte {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 999;
+}
+
+.modal-recorte-conteudo {
+    width: 100%;
+    max-width: 420px;
+    background: #1b2920;
+    border: 1px solid #36c76b;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.modal-recorte-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.modal-recorte-cabecalho h3 {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.btn-fechar-modal {
+    background: #26392c;
+    color: #ffffff;
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+.modal-recorte-dica {
+    color: #a9b9ad;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.area-recorte {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto 18px;
+    background: #101813;
+    border: 2px solid #36c76b;
+    border-radius: 12px;
+    overflow: hidden;
+    touch-action: none;
+    cursor: grab;
+    user-select: none;
+}
+
+.area-recorte:active {
+    cursor: grabbing;
+}
+
+#imagemRecortePreview {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: center center;
+    max-width: none;
+    pointer-events: none;
+}
+
+.guia-recorte {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 999px rgba(16, 24, 19, 0.42);
+    border: 1px dashed rgba(255, 255, 255, 0.55);
+    pointer-events: none;
+}
+
+.controle-zoom {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.controle-zoom label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #b8c9bd;
+}
+
+.controle-zoom input[type="range"] {
+    flex: 1;
+    accent-color: #36c76b;
+    cursor: pointer;
+}
+
+.controle-zoom span {
+    min-width: 46px;
+    text-align: right;
+    font-size: 13px;
+    color: #36c76b;
+    font-weight: bold;
+}
+
+.acoes-modal-recorte {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.btn-secundario-modal {
+    background: #35453a;
+    color: #ffffff;
+    padding: 10px 14px;
+    font-size: 13px;
+}
+
+.btn-aplicar-recorte {
+    background: #36c76b;
+    color: #102016;
+    padding: 10px 16px;
+    font-size: 13px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 50px;
+    color: #91a296;
+    border-top: 1px solid #344b3a;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 650px) {
+
+    .campo-linhas {
+        inset: 12px;
+    }
+
+    .grande-area {
+        display: none;
+    }
+
+    .conteudo-entrada {
+        padding: 30px 20px;
+    }
+
+    .titulo-entrada {
+        font-size: 32px;
+    }
+
+    .container {
+        width: 92%;
+    }
+
+    .perfil-usuario {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .acoes-perfil {
+        justify-content: center;
+    }
+
+    .lista-jogadores,
+    .resultado {
+        grid-template-columns: 1fr;
+    }
+
+    .caracteristicas {
+        grid-template-columns: 1fr;
+    }
+
+    .apresentacao h2 {
+        font-size: 24px;
+    }
+
+    .cabecalho-secao {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

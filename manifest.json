@@ -1,0 +1,21 @@
+{
+  "name": "Sorteio FC | Futebol dos Amigos",
+  "short_name": "Sorteio FC",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#101813",
+  "theme_color": "#36c76b",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

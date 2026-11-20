@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sorteio FC | Futebol dos Amigos</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#36c76b">
+</head>
+
+<body>
+
+    <!-- TELA DE ENTRADA (CAPA DO SISTEMA) -->
+    <section id="telaEntrada" class="tela-entrada" aria-label="Boas-vindas ao Sorteio FC">
+        <div class="campo-linhas" aria-hidden="true">
+            <div class="linha-meio"></div>
+            <div class="circulo-central"></div>
+            <div class="ponto-central"></div>
+            <div class="grande-area area-esquerda"></div>
+            <div class="grande-area area-direita"></div>
+        </div>
+
+        <div class="holofote holofote-esq" aria-hidden="true"></div>
+        <div class="holofote holofote-dir" aria-hidden="true"></div>
+
+        <div class="conteudo-entrada">
+            <div class="selo-temporada">
+                <span class="ponto-aovivo"></span>
+                <span>TEMPORADA 2026 • ARENA DOS AMIGOS</span>
+            </div>
+
+            <div class="escudo-entrada">
+                <span class="bola-girando">⚽</span>
+            </div>
+
+            <h1 class="titulo-entrada">
+                SORTEIO <strong>FC</strong>
+            </h1>
+
+            <p class="subtitulo-entrada">
+                Escale sua pelada com equilíbrio tático. Cadastre atletas, defina posições e monte times justos em segundos.
+            </p>
+
+            <div class="placar-previa">
+                <div class="item-placar">
+                    <span id="contadorEntradaJogadores">0</span>
+                    <small>Atletas no elenco</small>
+                </div>
+                <div class="divisor-placar">VS</div>
+                <div class="item-placar">
+                    <span>100%</span>
+                    <small>Sorteio balanceado</small>
+                </div>
+            </div>
+
+            <button type="button" id="btnEntrarSistema" class="btn-entrar-sistema">
+                <span>ENTRAR EM CAMPO</span>
+                <span class="icone-seta">➔</span>
+            </button>
+
+            <p class="dica-entrada">Clique acima para acessar o painel de escalação</p>
+        </div>
+    </section>
+
+    <!-- SISTEMA PRINCIPAL -->
+    <div id="sistemaPrincipal" class="sistema-principal" hidden>
+
+        <header class="cabecalho">
+            <div class="topo-cabecalho">
+                <button type="button" id="btnVoltarCapa" class="btn-voltar-capa" title="Voltar para a tela inicial">
+                    ← Início
+                </button>
+            </div>
+
+            <div class="logo">
+                <span>⚽</span>
+                <h1>SORTEIO <strong>FC</strong></h1>
+            </div>
+
+            <p>O seu futebol começa aqui!</p>
+
+            <div class="perfil-usuario" aria-label="Perfil do organizador">
+                <img
+                    id="fotoPerfilUsuario"
+                    src=""
+                    alt="Sua foto de perfil"
+                    hidden
+                >
+
+                <div id="avatarUsuarioPadrao" class="avatar-padrao">
+                    <span>👤</span>
+                </div>
+
+                <div class="info-usuario">
+                    <strong>Organizador do elenco</strong>
+                    <small>Personalize sua foto para esta sessão</small>
+
+                    <div class="acoes-perfil">
+                        <label for="inputFotoUsuario" class="btn-foto-usuario">
+                            Escolher minha foto
+                        </label>
+                        <input
+                            type="file"
+                            id="inputFotoUsuario"
+                            accept="image/*"
+                            hidden
+                        >
+
+                        <button
+                            type="button"
+                            id="btnRemoverFotoUsuario"
+                            class="btn-remover-foto"
+                            hidden
+                        >
+                            Remover foto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+
+            <section class="apresentacao">
+                <h2>Monte seus times!</h2>
+                <p>Cadastre seus jogadores, personalize os perfis e faça o sorteio balanceado.</p>
+            </section>
+
+            <section class="painel">
+
+                <div class="titulo-painel">
+                    <h2 id="tituloFormulario">Cadastrar jogador</h2>
+                    <p>Preencha as informações do jogador abaixo.</p>
+                </div>
+
+                <form id="formJogador">
+
+                    <div class="campo">
+                        <label for="nomeJogador">Nome do jogador *</label>
+                        <input
+                            type="text"
+                            id="nomeJogador"
+                            placeholder="Digite o nome..."
+                            maxlength="50"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="fotoJogador">Foto do jogador</label>
+
+                        <input
+                            type="file"
+                            id="fotoJogador"
+                            accept="image/*"
+                        >
+
+                        <div class="preview-container">
+                            <img
+                                id="previewFoto"
+                                src=""
+                                alt="Pré-visualização da foto"
+                                hidden
+                            >
+
+                            <div id="fotoPadrao" class="foto-padrao">
+                                <span>👤</span>
+                                <p>Foto do jogador</p>
+                            </div>
+                        </div>
+
+                        <small>Escolha uma foto do seu computador. Você poderá ajustar e cortar antes de salvar.</small>
+                    </div>
+
+                    <div class="campo">
+                        <label for="posicaoJogador">Posição principal *</label>
+
+                        <select id="posicaoJogador" required>
+                            <option value="">Selecione uma posição</option>
+                            <option value="Goleiro">Goleiro</option>
+                            <option value="Zagueiro">Zagueiro</option>
+                            <option value="Lateral">Lateral</option>
+                            <option value="Volante">Volante</option>
+                            <option value="Meia">Meia</option>
+                            <option value="Ponta">Ponta</option>
+                            <option value="Centroavante">Centroavante</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="posicaoSecundaria">Posição secundária</label>
+
+                        <select id="posicaoSecundaria">
+                            <option value="">Nenhuma</option>
+                            <option value="Goleiro">Goleiro</option>
+                            <option value="Zagueiro">Zagueiro</option>
+                            <option value="Lateral">Lateral</option>
+                            <option value="Volante">Volante</option>
+                            <option value="Meia">Meia</option>
+                            <option value="Ponta">Ponta</option>
+                            <option value="Centroavante">Centroavante</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label>Características do jogador</label>
+
+                        <div class="caracteristicas">
+
+                            <label class="opcao">
+                                <input type="checkbox" name="caracteristicas" value="Velocidade">
+                                Velocidade
+                            </label>
+
+                            <label class="opcao">
+                                <input type="checkbox" name="caracteristicas" value="Drible">
+                                Drible
+                            </label>
+
+                            <label class="opcao">
+                                <input type="checkbox" name="caracteristicas" value="Passe">
+                                Passe
+                            </label>
+
+                            <label class="opcao">
+                                <input type="checkbox" name="caracteristicas" value="Finalização">
+                                Finalização
+                            </label>
+
+                            <label class="opcao">
+                                <input type="checkbox" name="caracteristicas" value="Marcação">
+                                Marcação
+                            </label>
+
+                            <label class="opcao">
+                                <input type="checkbox" name="caracteristicas" value="Força">
+                                Força
+                            </label>
+
+                            <label class="opcao">
+                                <input type="checkbox" name="caracteristicas" value="Resistência">
+                                Resistência
+                            </label>
+
+                            <label class="opcao">
+                                <input type="checkbox" name="caracteristicas" value="Visão de jogo">
+                                Visão de jogo
+                            </label>
+
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <label for="descricaoJogador">Descrição do jogador</label>
+
+                        <textarea
+                            id="descricaoJogador"
+                            rows="4"
+                            maxlength="500"
+                            placeholder="Descreva as habilidades e o estilo de jogo..."
+                        ></textarea>
+                    </div>
+
+                    <div class="botoes-formulario">
+
+                        <button type="submit" id="btnSalvar">
+                            + Cadastrar jogador
+                        </button>
+
+                        <button type="button" id="btnCancelarEdicao" hidden>
+                            Cancelar edição
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+            <section class="painel sorteio-painel">
+
+                <h2>Organização dos times</h2>
+
+                <div class="campo">
+                    <label for="quantidadeTimes">Quantidade de times</label>
+
+                    <input
+                        type="number"
+                        id="quantidadeTimes"
+                        min="2"
+                        step="1"
+                        value="2"
+                    >
+                </div>
+
+                <div class="estatisticas">
+
+                    <div class="estatistica">
+                        <span id="totalJogadores">0</span>
+                        <p>Jogadores</p>
+                    </div>
+
+                    <div class="estatistica">
+                        <span id="totalTimes">2</span>
+                        <p>Times</p>
+                    </div>
+
+                </div>
+
+                <div class="acoes">
+
+                    <button id="btnSortear" class="btn-sortear" type="button">
+                        ⚽ REALIZAR SORTEIO
+                    </button>
+
+                    <button id="btnLimpar" class="btn-limpar" type="button">
+                        Limpar jogadores
+                    </button>
+
+                </div>
+
+            </section>
+
+            <section class="lista-section">
+
+                <div class="cabecalho-secao">
+                    <h2>Jogadores cadastrados</h2>
+                    <span id="contadorLista">0 jogadores</span>
+                </div>
+
+                <div id="listaJogadores" class="lista-jogadores">
+                    <p class="mensagem-vazia">Nenhum jogador cadastrado.</p>
+                </div>
+
+            </section>
+
+            <section class="resultado-section">
+
+                <h2>Resultado do sorteio</h2>
+
+                <div id="resultado" class="resultado">
+
+                    <p class="mensagem-vazia">
+                        Os times sorteados aparecerão aqui.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Sorteio FC - Futebol é união!</p>
+        </footer>
+
+    </div>
+
+    <!-- Modal de corte e ajuste de foto -->
+    <div id="modalRecorte" class="modal-recorte" hidden aria-modal="true" role="dialog" aria-labelledby="tituloModalRecorte">
+        <div class="modal-recorte-conteudo">
+            <div class="modal-recorte-cabecalho">
+                <h3 id="tituloModalRecorte">Ajustar e cortar foto</h3>
+                <button type="button" id="btnFecharModalRecorte" class="btn-fechar-modal" aria-label="Fechar modal">✕</button>
+            </div>
+
+            <p class="modal-recorte-dica">
+                Arraste a foto para enquadrar e ajuste o zoom.
+            </p>
+
+            <div id="areaRecorte" class="area-recorte">
+                <img id="imagemRecortePreview" src="" alt="Área de recorte da foto" draggable="false">
+                <div class="guia-recorte" aria-hidden="true"></div>
+            </div>
+
+            <div class="controle-zoom">
+                <label for="zoomRecorte">Zoom</label>
+                <input type="range" id="zoomRecorte" min="1" max="3" step="0.05" value="1">
+                <span id="valorZoomRecorte">100%</span>
+            </div>
+
+            <div class="acoes-modal-recorte">
+                <button type="button" id="btnResetarRecorte" class="btn-secundario-modal">
+                    Resetar
+                </button>
+                <button type="button" id="btnCancelarRecorte" class="btn-secundario-modal">
+                    Cancelar
+                </button>
+                <button type="button" id="btnAplicarRecorte" class="btn-aplicar-recorte">
+                    Cortar e salvar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
